@@ -1,42 +1,39 @@
-from time import sleep
+from PySimpleGUI import *
 from random import randint
+from time import sleep
 
-def leiaint(número):
-    while True:
-        try:
-            número = int(input(f'{número}'))
-        except:
-            print(f'\033[31mPor favor digite um número inteiro.\033[m')
-        else:
-            return número
+valor = randint(1, 100)
+change_look_and_feel('Default1')
+layout = [
+    [Text('Digite um número entre 1 a 100.')],
+    [Input(size=(30,0), key='chute')],
+    [Button('Chutar'), Button('Sair')],
+    [Output(size=(30,10))] ]
+janela = Window('Chute o número').layout(layout)
 
+while True:
+    event, values = janela.read()
+    try:
+        chuten = int(values['chute'])
+    except:
+        print('-' * 52)
+        print('Digite um valor.')
+        print('-' * 52)
+    else:
+        if event == 'Chutar':
+            print('-' * 52)
+            if chuten < valor:
+                print('Tente um valor mais alto.')
+            elif chuten > valor:
+                print('Tente um valor mais baixo.')
+            else:
+                print('Parabéns, você acertou o número.')
+                print('-' * 52)
+                sleep(3)
+                break
+            print('-' * 52)
 
-def linha(msg='', cor='\033[m', fim='\033[m'):
-    print(f'{cor}-' * 42)
-    print(msg.center(42))
-    print(f'{cor}-{fim}' * 42)
+    if event == WIN_CLOSED or event == 'Sair':
+        break
 
-
-def opção():
-    while True:
-        opção = leiaint('Seu chute: ')
-        if opção >= 1 and opção <= 100:
-            return opção
-        else:
-            print('\033[31mDigite uma valor válido!\033[m')
-
-
-def gerador():
-    linha('Gerando um número entre 1 a 100...', cor='\033[30m')
-    sleep(3)
-    número = randint(1, 100)
-    while True:
-        op = opção()
-        if op > número:
-            print(f'\033[31mTente um número mais baixo!\033[m')
-        elif op < número:
-            print(f'\033[31mTente um número mais alto!\033[m')
-        else:
-            print(f'\033[32mParabéns, você acertou o número {número}!\033[m')
-            sleep(3)
-            break
+janela.close()
