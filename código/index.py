@@ -16,3 +16,4 @@ while True:
         
 linha('FINALIZANDO PROGAMA...', cor='\033[31m')
 sleep(3)
+
