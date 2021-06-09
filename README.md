@@ -12,7 +12,7 @@ Abra o cmd ou o powershell (dependendo do sistema operacional utilizado) na past
 ## Execute
 
 ```
-git clone https://github.com/alessandrohenriqueramos/chute-o-numero.git
+git clone https://github.com/alessandroramos13/chute-o-numero.git
 ```
 
 Logo depois execute o arquivo `main.py` dentro da pasta code.
